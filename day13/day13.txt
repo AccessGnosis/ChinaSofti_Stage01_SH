@@ -1,0 +1,48 @@
+字符串：
+	什么是字符串？
+		字符串就是一串字符（多个字符排列在一起）
+		本质：就是char数组（char[]）
+		String str = "ABCD";
+		char[] data = new char[]{'A', 'B', 'C', 'D'};
+		char[] data = {'A', 'B', 'C', 'D'};
+	字符串的分类：
+		不可变字符串：	String类
+		可变字符串：	StringBuffer/StringBuilder类
+	String类：表示字符串
+		不可变字符串：一个String对象只能表示一个固定的字符串，若内容改变，则对象改变。
+	
+	String str = "张三";
+	str = str + "20";
+	
+	String类如何创建对象？
+		1）直接赋直接量（字面量）：如：String str = "张三";
+		2）使用构造器创建：如：String str = new String("张三");
+	
+	Java中的字符串对象为不可变对象，意思是字符串对象一旦创建后，内容不可改变，若想改变必须创建新对象。
+	编译器有一个优化措施，在编译源程序的时候，所计算的表达式如果两边都为字面量，那么会先直接运算，并且将结果编译到字节码文件中，这样的好处在JVM运行时，不用每次都计算。
+	
+	String类常用方法：
+		int length();//返回当前字符串的长度//字符串中字符的数量
+		int indexOf(String str);//查看给定字符串在当前字符串中的位置，若有，返回给定字符串第一个字符在当前字符串中的下表位置。若没有，则返回-1
+		
+	String类时不可变字符串，每次去改变内容就会创建新的对象。
+					不擅长做字符串的连接操作，性能太低。
+	StringBuffer和StringBuilder类：可改变字符串
+		使用可改变的字符串，内容改变之后，对象依然不变。
+		StringBuffer：线程安全性较高，但是性能较低	-->多线程使用
+		StringBuilder：线程安全性较低，但性能较高，推荐使用		-->单线程
+
+创建StringBuilder对象：
+	方式一：
+	StringBuilder sb = new StringBuilder();
+		char[] value = new char[16];
+	方式二：
+	StringBuilder sb = new StringBuilder(20);
+		char[] value = new char[20];
+	方式三：
+	StringBuilder sb = new StringBuilder("hello");
+	注意：如果事先知道需要存储多少个字符，尽量给出初始容量。
+	
+猜字母游戏（5）
+1）随机生成5个字母
+2）输入5个字母

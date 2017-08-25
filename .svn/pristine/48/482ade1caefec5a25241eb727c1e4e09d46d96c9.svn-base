@@ -1,0 +1,174 @@
+ 对象a的类型：有两种
+ the object a has two types.
+ 
+Dog a = new Dog();//Dog类型——dog对象
+Dog a = new Dog();//type Dog -- object dog
+Animal a = new Dog();//type Animal -- object dog
+ 
+ 编译期：把对象a看成/当成是什么类型。——Animal类型
+ complie time: take the object a look like or regard as the animal type.
+ 	编译的时候是Animal类型，编译通过，在运行的时候变换出的是子类的特征。
+ 运行期：对象的真正类型。——Dog类型
+ 	it's animal type in complie time, and complie passed, at the running time it convert to the type of subclass.
+ 	running time: the object truely type. -- the type of Dog
+ 此时，发现编译期和运行期类型不一致，此时的情况就称为多态。
+ this moment, we discover a lot of differents between complie and runing time, this condition we named polymorphism.
+ 多态：就是一个对象可以有多种形态（类型）。
+ polymorphism:is the object has a variety of forms(types).
+ encapsulation, modularity, polymorphism
+ 		封装			 模块化		      多态
+ 
+ 注意：继承是多态的前提的一种，多态的具体变换形式：接口和实现类的关系
+ attention:extends is a kind of premise in polymorphism, the specific conversion style of polymorphism: the relationship of interface and implements class.
+ 
+ 多态的特点：
+ the features of polymorphism.
+ 	把子类对象看成是父类的对象（把子类对象赋给父类的某一个变量），
+ 	Subclass object regard as the object of superclass.(take a subclass object assign to a variable of superclass)
+ 	但是在运行期，表现的是子类的特征
+ 	but at the running time, it express the feature of subclass.
+ 
+ 多态的优点：
+ the advantage of polymorphism
+ 	使代码更加简洁明了，优雅。提高代码的复用。
+ 	makes the code more succinct and clear, elegent. it imporve the reuse of codes.
+ 	
+引用类型的转换：
+the convert of reference type
+	基本类型的转换：
+	the convert of basic type
+		自动类型转换：把一个小类型的值赋给一个大类型的变量
+		the convert of automatic type: take a value of low type to a high type.
+		强制类型转换：把一个大类型的值，强制转换给小类型的变量	——可能导致精度的损失
+		the constraint convert of type: take a value of high type constraint convert to a low type. -- it maybe result in loss the precision.
+	引用类型的转换：分为两部分
+	the convert of reference type
+		自动类型转换：把子类的对象赋给父类型的变量（多态）
+		the convert of automatic type: take a subclass object assign to a superclass variable.(polymorphism)
+			Animal a = new Dog();
+			Animal a = new Dog();
+			Object o = 任意对象;
+			Object o = any objects;
+		强制类型转换：
+		the constraint convert of type
+			因为a对象的真是类型是Dog类型，所以可以强制把a转换为Dog类型。
+			So we able to constraint convert the variable to the type of Dog, because the object a is the type of Dog. 
+				Dog d = (Dog)a;
+				Dog d = (Dog)a;
+		//需求：给Dog类提供一个WatchDoor方法，给Cat类提供一个CatchMouse方法。
+		//request: provide a WatchDoor method to the class of Dog, provide a CatchMouse method to the class of Cat.
+			在饲养员喂养动物以后，就调用动物的各自特有的功能。
+
+判断某一个对象是否是某一种类型：instanceof运算符
+	boolean result = 对象 instanceof 类型/类名;
+
+代码块：
+	代码块：在程序中（类/方法），使用{}括起来的一段代码。
+	根据代码块存在的位置和修饰符分三类：
+		在代码块中定义的变量的作用域，只在本代码块中有效。
+	1）局部代码块：在方法中定义的代码块，一般表现为if，while，for等语句。
+	2）初始化代码块（构造代码块）：在类中直接定义，和方法是平行关系，用来初始化操作。
+		在创建初始化代码块所在类的对象时，先于构造器执行的代码块。
+	3）静态代码块：使用static修饰的初始化代码块。
+		当静态代码块所在的类的字节码被加载时，就立马执行静态代码块。并且只执行一次。
+		一般加载静态资源（图片，音频，视频……）
+		注意：静态代码块优先于main方法执行。
+			——main方法，是在字节码文件被加载进jvm虚拟机以后，才被调用。
+			
+final:修饰符
+	final：表示最终的，不能改变的。
+			是一个修饰符，可修饰类，方法，变量。
+	final 类：最终的类，该类不能有子类。（该类不能被继承）
+	final 方法：最终的方法，该方法不能被子类覆盖（重写）
+	final 变量：最终的变量，该变量不能被改变。
+	
+final类：不能有子类的类
+	必须满足以下条件，该类可以设计为final修饰的类：
+		1）某类不是专门为继承为设计的；
+		2）出于安全的考虑，该类的实现细节不能被改变；
+		3）确信该类不会再被拓展。
+	java中常见的哪些类是final修饰的：八大类型和String等
+	
+final修饰的方法：该方法不能被子类所覆盖（重写）
+	什么时候把方法设计为final的呢？
+		1）父类在构造器中调用初始化方法。
+		2）父类中提供好的算法操作，只能让子类调用，不能被子类重写。
+
+常量：1）字面量，直接量，直接给出的一个值。比如：123，“abc”，3.14
+	2）使用final修饰的变量。
+		final修饰符是所有修饰符中唯一能修饰局部变量的修饰符。
+final变量：最终的值-->常量，值不能再被修改，只能赋值一次。
+
+变量的命名：使用名词表示，首字母小写，遵守标识符和驼峰命名的规则。（除首单词小写外，其后的单词首字母均大写）
+常量的命名：全部字母均大写，若是以多个单词命名，单词之间用_（下划线隔开）
+	比如：最大值：MAX_VALUE，最小值：MIN_VALUE
+	final修饰的基本类型变量：
+		final int AGE = 20; //age常量只能被赋值一次
+	final修饰引用类型常量：final修饰的引用类型常量的地址不能改变，但是引用地址的内容可以改变。
+		final User user = new User();//user所引用的内存地址值不能改变。
+什么时候使用常量？
+	当一个变量，值不会被改变，并且在多个类中都会被用到，就可以提取为常量。
+	
+基本类型的包装类：
+	基本类型数据：byte,short,char,int,long,float,double,boolean
+	由于在java思想中，一切皆对象，而八种基本却不能表示null对象，
+		鉴于此，需要将八种基本类型封装成包装类型。
+		
+	基本类型		包装类型
+	byte		Byte
+	short		Short
+	int			Integer
+	long		Long
+	char 		Character
+	float		Float
+	double		Double
+	boolean		Boolean
+	
+	八种基本类型对应的包装类都是final修饰的。（不能被继承的）
+	装箱：一个基本数据类型的值，转换为对应包装类的对象。（int-->Integer）
+		比如：Integer num1 = new Integer(20);
+			Integer num2 = Integer.valueOf(20);
+	拆箱：把一个包装类的对象，转换为对应的基本类型的变量。（Integer-->int）
+		比如：int num3 = num2.intValue();
+	从java5开始，提供了自动装箱/拆箱 —— 新特性
+		自动装箱：可以把一个基本数据类型的值，赋给对应的包装类对象。
+			Integer num1 = 20;
+			相当于：
+			Integer num1 = new Integer(20);
+		自动拆箱：可以直接把一个包装类对象的值，赋值给对应的基本类型变量。
+			int num2 = Integer.valueOf(20);
+			相当于：
+			int num2 = Integer.valueOf(20).intValue();
+		因为自动拆装箱语句：
+			switch语句，只能支持byte, short, char, int, 也支持Byte, Short, Character, Integer
+			java7之后，还支持String类型。
+
+包装类的基本使用：
+	包装类里都有常量：
+		MAX_VALUE, MIN_VALUE, SIZE(数据占位)
+	构造器：
+		第一种：参数都是基本数据类型：
+			Integer num1 = new Integer(20);
+		第二种：参数是字符串(String)类型
+			Integer num1 = new Integer("20");	//可以定义纯数字的字符串
+			Integer num2 = new Integer("abc");	//抛 java.lang.NumberFormatException
+			结论：String类型——>包装类型
+			注意：boolean类型除外，boolean中除了true和“true”之外，其他数据均为false。
+			
+	如何把字符串转变为数字？
+		1. Integer num1 = new Integer("20");
+		2. Integer num2 = Integer.valueOf("20");
+		3. int num3 = Integer.parseInt("20");
+		
+	如何把数字转变为字符串？
+		1. 20 + "";
+		2. String str1 = String.valueOf(20);	//"20"
+		
+享元模式：
+	共享同一个元素/带有缓存功能
+	在包装类中，有一段数据，是我们经常使用到的，sun公司的科学家就把这一段经常使用的数据放入一个常量池中。
+	谁要是使用就直接获取常量池中的数据，不会开辟新的空间。
+	
+	到底这个常量池的范围有多大？
+		Byte, Short, Integer, Long: [-128, 127]
+		Character: [0, 127]

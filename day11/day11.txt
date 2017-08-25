@@ -1,0 +1,142 @@
+享元模式：
+Facade Pattern
+	共享同一个元素/带有缓存功能
+	share a same element or the function of cache.
+	在包装类中，有一段数据，是我们经常使用到的，sun公司的科学家就把这一段经常使用的数据放入一个常量池中。
+	in the package class, a term of datas, that we always used, the scientists of sun corporation designed a term of datas we always used puts in the constance pool.
+	谁要是使用就直接获取常量池中的数据，不会开辟新的空间。
+	who wants to use, it can get the data in constant pool, it will not open up a new area.
+	
+	到底这个常量池的范围有多大？
+	the scope of contant are on earth?
+		Byte, Short, Integer, Long: [-128, 127]
+		Character: [0, 127]
+	int和Integer是同一数据类型么？
+	the type int and Integer are the same data type?
+		不是，以下两个方法在同一个类中
+		nope, two methods in same class under this
+		public void doWork(int a){}
+		public void doWork(Integer a){}
+	如果让比较包装类对象的数值大小，如何比较？
+	if i want to compare the value of package object, how to compare?
+		用equals()方法
+		use equals method
+	
+参数注入的三种方式
+the three pattern of argument injection
+	1.构造方法注入：
+	1.construct method injection
+	2.setter方法注入：
+	2.setter method injection
+	3.接口注入：
+	3.interface injection
+	
+抽象方法
+abstract method
+	需求：求面积？圆形（Circle），矩形（Rectange），三角形（Triangle）的面积？
+	request: calculate area of Circle, Rectange, Triangle?
+	以上图形都是有面积的，我们可以抽出一个父类：Graph（图形），提供的是getArea()，用于获取面积的大小。
+	all the above graphs have area, we can extract a superclass, provide a method names getArea(), and it used to get the value of area.
+	让，圆，三角，矩形继承Graph类。
+	let the circle, rectange, triangle extends the graph class.
+	会出现问题？
+	the possible problems
+		1）因为不同形状的图形面积的算法不同，最终面积不同，所以父类中求面积的方法不能写返回值。
+		1)because of the different graphs have different algorithms, have the different in final result.so the getArea method in superclass unable to write return values.
+			Graph类中的getArea()不应该有返回值。
+			Graph class's getArea() method shouldn't have return value.
+		2）如果写了返回值，就需要重写父类中的getArea()这个方法。若忘记覆盖getArea()方法，要解决以上两个问题，我们就需要一个方法，而这个方法既没有返回值，又必须让我们重写。若不重写，编译报错。
+		2)if writed return value, it need to override the getArea() method in superclass.if we forgot to override the getArea() method, demand to the two questions above all, we just need a method, while the method have no return value, and must to override by us. if we don't override, the complie will error.
+		
+抽象方法：使用abstract修饰且没有方法体的方法，称为抽象方法。
+abstract method: the method of decorate by abstract and have no method body, it's called abstract method.
+	特点：
+	features:
+		1）抽象方法没有方法体，留给子类去实现方法体。
+		1)abstract method have no method body, leave a chance to implements the method body to subclass.
+		2）抽象方法修饰符不能使用private和final及static。
+		2)abstract method decoration unable to use private, final and static.
+		3）抽象方法必须定义在抽象类和接口中。
+		3)abstract method must defined in abstract class and interface.
+	注意：
+	attention:
+		一般的，习惯性把abstract放于方法的最前面，一看就知道该方法是抽象方法。
+		normally, we put the abstract methods in front of all methods chronically.We know methods are abstract methods in a glance.
+		抽象方法必须被子类重写，若子类不重写报编译错误或子类也声明为抽象方法。
+		abstract method must override by subclass, if subclass do not override, it will report complie error or the subclass declarated the abstract methods.
+
+抽象类：
+abstract class
+	使用abstract修饰的类称为抽象类。
+	the class decorated by abstract is named abstract class.
+	特点：
+	features
+		1）抽象类不能被实例化——不能new对象。
+		1)abstract class unable to instant -- unable to new a object.
+		2）抽象类可以包含抽象方法，也可以不包含抽象方法。
+		2)abstract class can contain abstract methods, and exclusive abstract methods.
+		3）若子类没有重写父类中的抽象方法，那么子类一定也是抽象类。
+		3)if subclass have no override abstract methods in superclass, then the subclasses are also abstract classes.
+		4）抽象类不能被final修饰，因为抽象类必须有子类，抽象方法才能被重写。
+		4)abstract class unable to decorate by final,because of abstract class must have subclass, and abstract class can be rewrite(override).
+		5）抽象类中含有构造方法，但不能让所有构造为私有的。
+		5)abstract class contains construct method, but can not let all the constructors to be private.
+		6）抽象类是一个不完整的类，需作为基类，功能需要被子类去实现。
+	抽象类和普通类的区别？
+		1）抽象类，也是一个类，可以定义抽象方法（该方法没有方法体）
+		2）抽象类不能创建对象
+		3）除以上两点，其他和普通类一样。
+		
+需求：计算1000个数字累加所需要的时间//System.currentTimeMillis();//long
+	计算1000个字符累加所需要的时间。
+	1）以上两个方法的功能相似，都是求出运算一段代码所需要的时间
+	2）每个方法中有一部分代码是重复的，能不能把重复的代码提出来
+
+模板方法设计模式（Template Method）
+	在父类的一个方法定义一个总体算法的骨架（模板方法），而将一部分步骤延迟到子类中，因为不同的子类实现的细节不同。
+	模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的具体某些步骤。
+
+接口：
+	在Java中，表示一种规范/约束/要求实现者必须遵循的规范。
+	接口只定义了类应当遵循的规范，并不关心这些类的内部数据和其功能实现的具体细节。
+
+接口的定义和使用：
+	在程序中，接口主要用来定义方法，规定必须具有某些行为（方法）。其他类若想拥有该接口功能，就必须要实现该接口。
+	定义接口的格式：
+	【修饰符】 interface 接口名{
+		int age = 20; //常量;
+		void work(); //方法的定义;
+	}
+	
+接口的成员：
+	接口的命名：满足标识符规范和驼峰命名法，一般接口表示具有某种行为能力的，有人习惯使用able/handle(处理)作为后缀。
+	为了从名字上区分是类还是接口，大多数人习惯以  I 开头作为接口的前缀。
+	1）全局静态常量：
+		接口中定义的变量。默认以public static final修饰。
+	2）公共的抽象方法：
+		在接口中定义的方法，默认是public abstract修饰。
+	3）公共的静态内部类：(了解内容)  如：Map接口Entry类
+		默认以public static修饰。
+		
+	为什么接口中的方法都是抽象方法？因为接口仅仅只定义了规范（定义了具有哪些行为规范），没做具体的实现。
+	
+接口的特点：
+	1）没有构造方法，不能做实例化；
+	2）接口只能继承接口，且接口支持多继承。但不能继承类；
+		一个接口允许继承多个父接口。
+			interface IWalk extends 接口1, 接口2{}
+	3）接口里的方法全部都是抽象方法。默认修饰符是public abstract
+	4）接口里的变量都是全局静态常量。默认修饰符为public static final
+	5）接口里的内部类全是公共的静态类。默认修饰符为public static
+	
+	定义接口的目的：
+		在于高度的统一规范，接口必须被实现才会有意义。
+	我们把实现接口的类称为实现类，功能在于实现接口中的抽象方法。
+	
+	实现类的格式：
+		public class implements IInterfaceA, IInterfaceB { //该类称为实现类
+		}
+		a.实现类可以同时实现多个接口。
+		b.实现类实现接口之后，必须要重写接口中的抽象方法。不重写，报编译错误或者该实现类只能作为抽象类。
+		实现类和接口之间是一种 —— 实现的关系，也是一种特殊的继承关系。
+		实现类重写接口中的方法，一般称为实现。

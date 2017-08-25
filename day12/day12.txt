@@ -1,0 +1,87 @@
+内部类：
+Inner Class
+	内部类：定义在类结构中的一个类
+	Inner Class：defined a class in class construct.
+	类的成员有哪些？
+	members in class?
+		字段：
+		fields:
+		方法：
+		methods:
+		内部类：
+		inner classes:
+	格式：
+		class Outter{	//Outer Class / Host Class
+			fields;
+			methods;
+			class Inner{	//Inner Class / Nest Class
+				fields;
+				methods;
+			}
+		}
+	为什么用内部类？
+	why to use inner class?
+		1）增强封装，把内部类隐藏在外部类之中，不允许其他类访问内部类
+		1)boost encapsulation, hide the inner class in outer class, not allow other visit.
+		2）内部类可以直接访问外部类成员
+		2)inner class can visit outer class members directly.
+		3）内部类提高了代码的可读性和可维护性
+		3)inner class improve the readability and maintainability of code.
+	内部类分为以下四种：
+	Inner class has four chances over there:
+		1）实例内部类：内部类没有使用static修饰
+		1)instance inner class: inner class have no used static decoration
+		2）静态内部类：内部类使用static修饰
+		2)static inner class:inner class used static decoration
+		3）局部内部类：在方法中定义的内部类
+		3)local inner class: methods defined in inner class
+		4）匿名内部类：是局部内部类的一种特殊情况，仅适用于一次使用的类
+				修饰符			拥有成员的类型	可以访问到的			外部类如何访问内部类的成员
+											外部类的哪些成员	
+	实力内部类		访问控制修饰符,		只能拥有实例成员	所有成员				必须通过内部类的实例来访问
+				abstract,final
+	静态内部类		访问控制修饰符，		可以拥有静态成员	只能访问到外部类			对于静态成员，可以通过内部类
+				abstract,final,	和实例成员		的静态成员				的完整类名来访问
+				static
+	局部内部类		abstract,final	只能拥有实例成员	所有成员，并且能访问所在方法	必须通过内部类的实例来访问
+											final类型的变量和参数
+	
+	外部类的访问修饰符：一般是public或者默认
+	内部类可以看成是外部类的一个成员，那么内部类可以使用：访问控制修饰符，final，static，abstract
+	
+	实例内部类：没有static修饰的内部类，说明实例内部类属于外部类的实例对象，不属于外部类本身。
+		特点：
+			1）创建实例内部类前，必须存在外部类对象，通过外部类创建内部类对象，（想创建内部类对象，必先创建外部类对象）
+				Outter.Inner in = new Outter().new Inner();
+			2）实例内部类的实例对象自动的持有外部类实例对象的引用，内部类可以直接访问外部类的成员；
+			3）外部类中不能直接访问内部类的成员，必须通过内部类的实例去访问。
+			4）实例内部类中不能定义静态成员，只能定义实例成员。
+			5）如果外部类和内部类定义了同名的字段，如何解决？
+				this.name		表示访问内部类的同名成员
+				外部类.this.name	表示的是访问外部类的同名成员
+	静态内部类：使用static修饰的内部类
+		特点：
+			1）静态内部类的实例不会自动的持有外部类的实例引用，在创建内部类的实例时，不必创建外部类的实例。
+				Outter.Inner in = new Outter.Inner();
+			2）静态内部类可以直接访问外部类的静态成员，如果访问外部类的实例成员，必须通过外部类的实例对象去访问。
+			3）静态内部类中可以定义静态成员和实例成员
+			4）在测试类中可以通过完整的类名直接访问静态内部类中的静态成员变量
+	局部内部类：在方法中定义的内部类，其可见的范围是当前方法，和局部变量属于同一级别。
+		特点：
+			1）局部内部类不能使用public, private, protected, static修饰
+			2）局部内部类和实力内部类一样，不能包含静态成员。
+			3）局部内部类和实例内部类一样，可以访问外部所有的成员。
+			4）局部内部类的局部变量必须使用final修饰。（java8之前的版本必须加final）
+	匿名内部类：是一个没有名字的局部内部类，适合只使用一次的类。
+		在开发中会经常用到匿名内部类，只需要定义一次，使用一次即可丢弃。此时不应该在文件中白白的定义一个类，占用内存。
+	匿名内部类的使用范围：
+		一般在做按钮点击之后，会有不同的操作，此时考虑匿名内部类。
+	特点：
+		1）匿名内部类本身没有构造器，但是会调用父类的构造器。
+		2）匿名内部类尽管没有构造，但是可以在匿名内部类中提供一段初始化代码块。JVM在调用父类构造后，会执行该代码块。
+		3）匿名内部类创建对象可以用父类，还可以用接口。
+	匿名内部类的格式：
+		new 父类的构造器([参数...]) 或  接口{
+			//匿名内部类的类体部分
+		}
+	注意：匿名内部类必须继承一个父类或实现一个接口。

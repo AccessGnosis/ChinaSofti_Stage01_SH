@@ -1,0 +1,53 @@
+I/O：表示Input/Output，表示输入和输出
+	I/O设备或I/O插槽：比如耳机和麦克风。相对于电脑来说的。
+		Java中流的分类：
+			从流向考虑：输入流和输出流
+			从流的单位：字节流和字符流
+			从流的功能：节点流和缓存流
+
+				Java中流的四大基类（超类）		
+					输入流			输出流
+		字节流		InputStream		OutputStream
+					字节输入流			字节输出流
+		字符流		Reader			Writer
+					字符输入流			字符输出流
+
+	在Java中，一般都是相对于Java程序来考虑的。
+	字节流和字符流：
+	字节流（InputStream/OutputStream）和字符流（Reader/Writer）
+		各自的子类都是以父类作为自己的后缀。
+			比如：FileInputStream		文件字节输入流
+				FileReader			文件字符输入流
+	操作流：记住六个字：
+		读进来：进来，说明使用的是输入流，读，是输入流中的一个方法（Read）。
+		写出去：出来，说明使用的是输出流，写，是输出流中的一个方法（Writer）。
+		
+//需求：把C:/temp/stream/a.txt文件拷贝到C:/temp/stream/a_123.txt
+
+文件的字符流：
+	文件的字节流：每一次的操作的单位都是一个字节（byte）
+	文件的字符流：每一次的操作的单位都是一个字符（char）
+	一般的，文件中有中文出现，就建议用字符流
+	任何时候都可以使用字节流，一般情况下，操作二进制文件的时候，只能用字节流。
+	文件字节流：
+		输入：FileInputStream
+		输出：FileOutputStream
+	文件字符流：
+		输入：FileReader
+		输出：FileWriter
+	所有的流，都记得关资源。
+	
+	如果程序暴露出来的仅仅是一个InputStream/OutputStream
+	此时如何使用字符流，我们就使用字节转换字符的流。
+	
+	InputStream ---> InputStreamReader		字节输入流转换为字符输入流
+	OutputStream ---> OutputStreamReader	字节输出流转换为字符输出流
+	
+编码和解码：
+	utf-8		3个字节
+	gbk			2个字节
+	iso-8859-1	1个字节(除了中文)
+	编码			把字符串转变为数组
+	解码			把数组转变为字符串
+	
+//作业：文件拷贝案例——拷贝指定目录的指定文件（.java）到指定目录，把拷贝过去文件的拓展名改为.txt

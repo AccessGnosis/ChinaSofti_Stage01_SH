@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="day06"/>
+	<classpathentry kind="src" path="day07"/>
+	<classpathentry kind="src" path="day08"/>
+	<classpathentry kind="src" path="day09"/>
+	<classpathentry kind="src" path="day10"/>
+	<classpathentry kind="src" path="day11"/>
+	<classpathentry kind="src" path="day12"/>
+	<classpathentry kind="src" path="day13"/>
+	<classpathentry kind="src" path="day14"/>
+	<classpathentry kind="src" path="day15"/>
+	<classpathentry kind="src" path="day16"/>
+	<classpathentry kind="src" path="day17"/>
+	<classpathentry kind="src" path="day18"/>
+	<classpathentry kind="src" path="day19"/>
+	<classpathentry kind="src" path="day20"/>
+	<classpathentry kind="src" path="day21"/>
+	<classpathentry kind="src" path="exam_fore_test_01"/>
+	<classpathentry kind="src" path="day22"/>
+	<classpathentry kind="src" path="day23"/>
+	<classpathentry kind="src" path="day24"/>
+	<classpathentry kind="src" path="day25"/>
+	<classpathentry kind="src" path="day26"/>
+	<classpathentry kind="src" path="day27"/>
+	<classpathentry kind="src" path="exam01"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

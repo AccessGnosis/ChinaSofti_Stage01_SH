@@ -1,0 +1,46 @@
+生产者和消费者：
+	线程通信之生产者和消费者关系：
+		步骤：
+			1）共享同一数据空间--->共享空间（Share）
+			2）有一个线程负责向该共享空间，存放数据---->生产者（Producer）
+			3）有一个线程负责从共享空间，取出数据---->消费者（Consumer）
+		多线程并发访问同一资源，可能造成线程不安全的问题：
+		
+		期望输出的为：
+			小丽	女
+			小龙	男
+			小丽	女
+			小龙	男
+			……
+		
+		1）性别紊乱的问题					通过synchronized解决
+		2）出现重复生产，重复消费的情况		通过线程等待方法解决
+		
+		如何解决性别紊乱的问题？	
+			让生产者把姓名和性别生产完毕后，消费者才能去消费，
+			在生产的过程中，消费者线程是不能访问共享空间的。
+			在消费的过程中，生产者也不能访问共享空间。
+		
+		Object类中提供操作线程的方法：
+			而这些操作线程的方法都得使用当前监听对象的来调用，否则报错。
+			void wait()	让当前线程失去同步监听对象，进入无限期等待，待其他线程来唤醒
+			void wait(long timeout)	让当前等待一段时间后，才会再次拥有同步监听对象
+			void notify()	唤醒在此对象监视器上等待的单个线程
+			void notifyAll()	唤醒在此对象监视器上等待的所有线程
+		
+以上功能的实现，使用的是synchronized方法，同步方法是有同步监听对象的，wait和notify方法都得使用同步监听对象。
+
+如果解决多线程并发的安全问题，不用synchronized，如果用锁机制（Lock）是没有同步监听对象的。
+	如何解决性别紊乱的问题？
+		private Lock lock = new ReentrantLock();//创建锁对象
+		lock.lock();// 获取锁，加锁
+		lock.unlock();// 释放锁，解锁
+	如何解决出现重复生产，重复消费的情况？
+		private Condition condition = lock.newCondition();
+		condition.await();// 等价于this.wait()
+		condition.signal();	//等价于this.notify();
+		
+		Condition newCondition()	返回绑定到此Lock  实例新的Condition实例
+		void await();	造成当前线程在接到信号或被中断之前一直处于等待状态
+		void singnal();	唤醒一个等待线程
+		void singnalAll();

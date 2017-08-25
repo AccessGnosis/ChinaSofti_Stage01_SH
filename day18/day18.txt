@@ -1,0 +1,82 @@
+数据结构：是一种用来存储多个数据的容器。
+	数组：是最简单的数据结构。是用来存储相同类型的一组数据。
+什么是数据结构：数据结构：把多个数据按照一定的存储方式，存储起来，称存储方式为数据结构。
+	数据的存储方式有很多种：比如数组、队列、链表、栈、哈希表等等。
+	不同的数据结构，性能是不一样的。根据实际的操作，选择合适的存储方式。
+
+集合框架：
+	集合：就是对数据结构的封装。
+	
+Vector：是一个动态数组，其底层依然是一个Object[]数组，是对数组做的封装，所以就包含了增删改查的操作。
+	JDK的集合框架是jdk1.2版本之后开始有的，那么jdk1.0/jdk1.1版本，没有集合框架，那么如何存储数据操作数据？
+		在很久很久以前，没有集合框架之前，我们使用Vector来存储数据，操作数据。
+		
+		ArrayList和Vector的关系？
+		1）底层算法一样，都是基于数组的。
+		2）ArrayList是集合框架中提供的新的变长数组，Vector是ArrayList的前身。
+		3）Vector相对于ArrayList来说，Vector线程更安全，但是性能较低。
+	
+	注意：
+		在集合中，存储的都是对象的引用，而不是对象的内容。
+		在集合中，只能存储对象，不能存储基本类型的数据。
+			也就是说，不支持byte, short, char, int, long, boolean, float, double八种基本类型。
+			在java5以前，我们使用集合存储数据，需要自己手动装箱拆箱。
+				集合对象.add(Integer.valueOf(基本类型));
+			从java5以后，可以完成自动装箱操作。
+				集合对象.add(基本类型);
+				
+栈：底层依然是数组，java.util.Stack是java.util.Vector的子类。
+	把最后一个位置当做栈顶。
+	特点是先进后出（FILO）
+	栈的三个操作：
+		压入到栈顶：push
+		移除栈顶元素：pop
+		查看当前栈顶元素：peek
+		
+ArrayList:基于数组的集合类
+	ArrayList和Vector关系？
+	1）底层算法一样，都是基于数组的。
+	2）ArrayList是集合框架中提供的新的变长数组，Vector是ArrayList的前身。
+	3）Vector相对于ArrayList来说，Vector线程更安全，但是性能较低。
+	
+LinkedList:链表，底层使用的是双向链表/单向链表/单向队列/双向队列。
+
+Vector, ArrayList, LinkedList类：存储有序的数据，可以存储重复的数据。
+
+Java中的三种集合：
+	1、List（有序、可重复）
+		List里存放的对象是有序的，同时也是可以重复的，List关注的是索引，拥有一系列和索引相关的方法，查询速度快。因为往list集合里插入或删除数据时，会伴随着后面数据的移动，所有插入删除数据速度慢。
+	2、Set（无序、不能重复）
+		Set里存放的对象是无序，不能重复的，集合中的对象不按特定的方式排序，只是简单地把对象加入集合中。
+	3、Map（键值对、键唯一、值不唯一）
+		Map集合中存储的是键值对，键不能重复，值可以重复。根据键得到值，对map集合遍历时先得到键的set集合，对set集合进行遍历，得到相应的值。
+		
+Iterable接口：支持集合的迭代操作。
+
+Collection接口：表示集合/容器
+	该接口有两个非常重要的子接口：list接口，set接口
+		list接口：表示一种，可以允许重复，并且会记录添加顺序的集合。
+			最常见的实现类：ArrayList，LinkedList
+		set接口：表示一种，不允许元素重复，并且也不会记录添加顺序的集合。
+			最常见的实现类：HashSet，TreeSet
+	
+Collection集合：
+	增强for循环
+		for(Object ele : list){//list可指代数组/Iterator接口的实现类的实例对象
+			System.out.println(ele);
+		}
+	如若删除遍历出来的元素对象，不能用集合对象删除，需要用集合的迭代器对象删除。
+		for(Object ele : list){
+			list.remove(ele);//不对，不能使用集合对象的remove()方法，需要用迭代器对象删除
+		}
+	//可以用以下方式删除
+		Iterator it = list.iterator();
+		while(it.hasNext()){
+			Object ele = it.next();
+			it.remove();
+		}
+	
+HashSet接口：不保证元素添加的先后顺序
+	判断对象是否相等：
+		1）equals比较结果为true
+		2）hashCode值相等

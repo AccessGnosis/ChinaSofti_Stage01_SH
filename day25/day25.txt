@@ -1,0 +1,72 @@
+文件流
+	FileInputStream
+	FileOutputStream
+	FileReader
+	FileWriter
+转换流
+	InputStreamReader
+	OutputStreamWriter
+缓存流：包装流（内部提供常量，提高了8KB的缓存区）
+	包装流（缓存流）：在使用该流对象的时候需要包裹另一个流，来提高IO性能。
+	节点流：没有使用包装流包装的流
+	
+	装饰设计模式（包装设计模式）：在于不改变原有对象的基础上，对原有对象做增强操作。
+	BufferedInputStream：字节输入流的缓冲流，专门用来包装InputStream的。
+	BufferedOutputStream：字节输出流的缓冲流，专门用来包装OutputStream的。
+	BufferedReader：字符输入流的缓冲流。专门用来包装Reader的。
+	BufferedWriter：字符输出流的缓冲流。专门用来包装Writer的。
+	
+标准输入输出流：System类中的常量
+	标准输入流：通过键盘录入数据的方式；InputStream input = System.in;//接收键盘录入的数据
+	标准输出流：在控制台输出结果的方式；OutputStream out = System.out;//在控制台输出的数据
+	标准输入流的重定向：
+		标准输入流表示从键盘接收输入的数据，把接收的位置变成一个文件。
+			System.setIn();
+		标准输出流表示把数据输出到控制台中，我们可以改变输出方向到一个文件中去。
+			Systen.setOut();
+			
+打印流：输出任意的数据类型
+	PrintStream：字节打印流
+	PrintWriter：字符打印流
+	
+Properties类：
+	但是里面只能放String类型
+	HashTable类是Map接口的实现类，而Properties类优势HashTable的子类。
+		所以Properties类体现着key----value，然而一般称之为属性类。
+		即把key称之为属性名，value称之为属性值。
+	HashTable中key和value都可以是Object类型，
+		而在Properties类中所有的属性名和属性值都是String类型。
+		为什么编码中用配置文件？
+			因为为了避免硬编码。
+		所谓硬编码就是某一个或多个数据给写死了（若需要修改的时候必须修改源码）。
+	在Java中：配置文件（XML/properties）
+		文件名.properties 文件，我们称之为属性文件，是Java中配置文件的一种。
+		属性名  = 属性值
+		
+对象流和序列化
+	什么是序列化：把对象值的数据以二进制的格式保存起来。
+	反序列化：把二进制的对象信息，恢复成对象
+	为什么要序列化？
+		1）方便网络传输
+		2）把对象数据持久化保存在存在磁盘中
+		序列化和对象流的关系：
+			为了方便把对象的信息存储到磁盘中，Java的IO就提供了对象流，专门用来操作对象和二进制之间的转换操作。
+				ObjectOutputStream：把对象转换为二进制；//序列化
+				ObjectInputStream：把二进制读进程序，恢复成对象。//反序列化
+	如何做序列化：被对象流操作的对象，必须要实现java.io.Serializable接口
+	
+	实现java.io.Serializable接口的类中：
+		如果字段使用static或者transient修饰，则该字段不会被序列化
+		static:因为static修饰的是类的成员，不是对象的成员
+		transient:限定某个字段不会被序列化，比如密码
+
+数据流：
+DataOutputStream：
+	提供了专门写出java中八大基本类型的直接操作方法，最擅长的就是写出不同的数据类型的值。
+	其中，提供了很多writeXXX方法。
+DataInputStream：
+	提供了专门读取java中八大基本类型的直接操作方法，最擅长的就是读取不同的数据类型的值。
+	其中，提供了很多readXXX方法。
+
+File类：表示一个文件或者一个目录的路径和相关的信息，不涉及文件中的数据。
+RandomAccessFile：
